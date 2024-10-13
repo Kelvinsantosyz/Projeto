@@ -1,59 +1,120 @@
+Claro! Aqui está a versão atualizada do README.md com a descrição dos colaboradores:
+
+```markdown
 # Projeto OneLife Advogados
 
-## Descrição
+Este projeto é uma aplicação web para a OneLife Advogados, focada em maximizar a captação de clientes e divulgar os serviços oferecidos. O site inclui funcionalidades para facilitar a interação com clientes, como formulários de contato e agendamento de consultas.
 
-Este projeto é um sistema de gerenciamento de usuários e chamados para a OneLife Advogados, focado em maximizar a captação de clientes e divulgar os serviços oferecidos. O sistema inclui funcionalidades para autenticação, registro de usuários, e gerenciamento de chamados.
+## Colaboradores
+
+- **Kelvin Felipe dos Santos** - R.A: 923200158
+- **Miguel Benites de Almeida** - R.A: 923209649
+- **Thiago Rocha Santana** - R.A: 923204332
+
+## Funcionalidades
+
+- Registro e login de usuários (advogados e clientes).
+- Envio e gerenciamento de chamados.
+- Marcação de status dos chamados por advogados.
+- Visualização de informações do usuário logado.
+- Interface responsiva e atraente.
 
 ## Tecnologias Utilizadas
 
+- **Frontend**: HTML, CSS, JavaScript, Bootstrap
 - **Backend**: Node.js, Express
 - **Banco de Dados**: MySQL
-- **Frontend**: HTML, CSS, JavaScript, Bootstrap
-- **Dependências**:
-  - `bcrypt`: Para hashing de senhas.
-  - `express-session`: Para gerenciamento de sessões.
-  - `mysql2`: Para interação com o banco de dados MySQL.
-  - Outros conforme listado em `package.json`.
+- **Autenticação**: bcrypt, express-session
 
 ## Estrutura do Banco de Dados
 
-O banco de dados consiste nas seguintes tabelas:
+### Tabelas Criadas
 
-### Tabela `usuarios`
+```sql
+-- Criação da tabela "chamados"
+CREATE TABLE chamados (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    sobrenome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    telefone VARCHAR(255) NOT NULL,
+    ramo VARCHAR(255) NOT NULL,
+    descricao TEXT NOT NULL,
+    status VARCHAR(255) DEFAULT 'Aberto',
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-| Coluna    | Tipo           | Descrição                          |
-|-----------|----------------|------------------------------------|
-| id        | INT            | Identificador único do usuário (chave primária). |
-| nome      | VARCHAR(255)   | Nome do usuário (obrigatório).    |
-| sobrenome | VARCHAR(255)   | Sobrenome do usuário (obrigatório). |
-| email     | VARCHAR(255)   | E-mail único do usuário (obrigatório e deve ser único). |
-| senha     | VARCHAR(255)   | Senha do usuário (obrigatório).   |
+-- Criação da tabela "sessions"
+CREATE TABLE sessions (
+    session_id VARCHAR(128) PRIMARY KEY,
+    expires INT UNSIGNED NOT NULL,
+    data MEDIUMTEXT NOT NULL
+);
 
-### Tabela `chamados`
-
-| Coluna        | Tipo           | Descrição                                     |
-|---------------|----------------|-----------------------------------------------|
-| id            | INT            | Identificador único do chamado (chave primária). |
-| nome          | VARCHAR(255)   | Nome da pessoa que faz o chamado (obrigatório). |
-| sobrenome     | VARCHAR(255)   | Sobrenome da pessoa (obrigatório).          |
-| email         | VARCHAR(255)   | E-mail da pessoa (obrigatório).             |
-| telefone      | VARCHAR(255)   | Número de telefone (obrigatório).           |
-| ramo          | VARCHAR(255)   | Ramo do direito relacionado ao chamado (obrigatório). |
-| descricao     | TEXT           | Descrição detalhada do chamado (obrigatório). |
-| status        | VARCHAR(255)   | Status do chamado, inicia como 'Aberto'.    |
-| data_criacao  | TIMESTAMP      | Data e hora em que o chamado foi criado.    |
-
-### Tabela `sessions`
-
-| Coluna      | Tipo           | Descrição                           |
-|-------------|----------------|-------------------------------------|
-| session_id  | VARCHAR(128)   | Identificador único da sessão (chave primária). |
-| expires     | INT UNSIGNED    | Tempo de expiração da sessão (em segundos). |
-| data        | MEDIUMTEXT     | Dados da sessão.                   |
+-- Criação da tabela "usuarios"
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    sobrenome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL
+);
+```
 
 ## Instalação
 
-Para instalar as dependências do projeto, execute o seguinte comando:
+Para instalar as dependências do projeto e executar o servidor Node.js, siga os passos abaixo:
 
-```bash
-npm install
+1. Clone o repositório:
+
+   ```bash
+   git clone <URL_DO_REPOSITORIO>
+   cd <NOME_DA_PASTA_DO_REPOSITORIO>
+   ```
+
+2. Instale as dependências do projeto:
+
+   ```bash
+   npm install
+   ```
+
+3. Inicie o servidor:
+
+   ```bash
+   node server.js
+   ```
+
+4. Acesse a aplicação em seu navegador em `http://localhost:3000`.
+
+## Dependências
+
+As seguintes dependências são necessárias para o funcionamento do projeto:
+
+```json
+{
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "bootbox": "^6.0.0",
+    "bootstrap": "^5.3.3",
+    "cors": "^2.8.5",
+    "csurf": "^1.11.0",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "express-validator": "^7.2.0",
+    "mysql2": "^3.11.0"
+  }
+}
+```
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma *issue* ou enviar um *pull request*.
+
+## Licença
+
+Este projeto é licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para detalhes.
+```
+
+Sinta-se à vontade para fazer mais ajustes, se necessário!
