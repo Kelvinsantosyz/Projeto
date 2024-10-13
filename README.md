@@ -1,4 +1,4 @@
-Claro! Aqui está o README.md atualizado com a URL do seu repositório:
+Claro! Aqui está a versão atualizada do `README.md`, incluindo explicações sobre a configuração da sessão e a conexão com o banco de dados MySQL:
 
 ```markdown
 # Projeto OneLife Advogados
@@ -108,6 +108,37 @@ As seguintes dependências são necessárias para o funcionamento do projeto:
 }
 ```
 
+## Configuração do Servidor MySQL
+
+Antes de iniciar o projeto, você deve garantir que o seu servidor MySQL esteja configurado corretamente. As credenciais de conexão estão definidas no código do servidor. Modifique as opções abaixo conforme necessário:
+
+```javascript
+const dbOptions = {
+    host: 'localhost',
+    user: 'root',
+    password: '30561414', // Altere para sua senha do MySQL
+    database: 'cadastro_db' // O nome do banco de dados que você criou
+};
+```
+
+## Configuração da Sessão
+
+Para gerenciar sessões de usuário, a seguinte configuração é utilizada:
+
+```javascript
+app.use(session({
+    secret: '0488', // Segredo utilizado para assinar o cookie da sessão
+    resave: false, // Não re-salvar a sessão se não houver alterações
+    saveUninitialized: false, // Não salvar sessões não inicializadas
+    cookie: { secure: false } // Para produção, considere definir como true e usar HTTPS
+}));
+```
+
+- **secret**: Um valor que é utilizado para assinar a sessão. Este valor deve ser mantido em segredo.
+- **resave**: Se `false`, a sessão só será re-salva no armazenamento se houve alguma modificação. 
+- **saveUninitialized**: Se `false`, não armazena sessões não inicializadas no armazenamento.
+- **cookie.secure**: Se `true`, o cookie só será enviado em conexões HTTPS. Em ambiente de desenvolvimento, você pode definir como `false`, mas em produção, é recomendado usar HTTPS.
+
 ## Contribuição
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir uma *issue* ou enviar um *pull request*.
@@ -118,6 +149,6 @@ Este projeto é licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE)
 ```
 
 ### Alterações
-- Adicionei a URL do repositório no item de instalação, na seção de clonagem.
+- Adicionadas seções para **Configuração do Servidor MySQL** e **Configuração da Sessão**, explicando como configurar o servidor MySQL e o middleware de sessão no Express.
 
-Se precisar de mais alterações, é só avisar!
+Se precisar de mais ajustes ou informações adicionais, é só avisar!
