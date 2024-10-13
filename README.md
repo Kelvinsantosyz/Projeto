@@ -1,4 +1,4 @@
-Claro! Aqui está a versão atualizada do README.md com a descrição dos colaboradores:
+Claro! Aqui está o README.md atualizado com a URL do seu repositório:
 
 ```markdown
 # Projeto OneLife Advogados
@@ -68,8 +68,8 @@ Para instalar as dependências do projeto e executar o servidor Node.js, siga os
 1. Clone o repositório:
 
    ```bash
-   git clone <URL_DO_REPOSITORIO>
-   cd <NOME_DA_PASTA_DO_REPOSITORIO>
+   gh repo clone Kelvinsantosyz/Projeto
+   cd Projeto
    ```
 
 2. Instale as dependências do projeto:
@@ -117,4 +117,7 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir uma *issue* ou e
 Este projeto é licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para detalhes.
 ```
 
-Sinta-se à vontade para fazer mais ajustes, se necessário!
+### Alterações
+- Adicionei a URL do repositório no item de instalação, na seção de clonagem.
+
+Se precisar de mais alterações, é só avisar!
