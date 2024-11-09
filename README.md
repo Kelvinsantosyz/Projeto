@@ -1,154 +1,27 @@
-Claro! Aqui está a versão atualizada do `README.md`, incluindo explicações sobre a configuração da sessão e a conexão com o banco de dados MySQL:
+Aqui está uma organização em tópicos para os conceitos e definições sobre desenvolvimento de software, com base nas normas de gestão e garantia de qualidade:
 
-```markdown
-# Projeto OneLife Advogados
+### 1. Definições Fundamentais
 
-Este projeto é uma aplicação web para a OneLife Advogados, focada em maximizar a captação de clientes e divulgar os serviços oferecidos. O site inclui funcionalidades para facilitar a interação com clientes, como formulários de contato e agendamento de consultas.
+- **Software:** Criação intelectual que inclui programas, procedimentos, regras e documentação relacionada à operação de um sistema de processamento de dados.
+- **Produto de Software:** Conjunto completo de programas, procedimentos, documentação e dados destinados a serem entregues a um usuário.
+- **Item de Software:** Parte identificável de um produto de software em uma etapa intermediária ou final do desenvolvimento.
+- **Desenvolvimento:** Conjunto de atividades realizadas para criar um produto de software.
+- **Fase:** Segmento específico e definido do trabalho no processo de desenvolvimento de software.
 
-## Colaboradores
+### 2. Processos de Qualidade e Avaliação
 
-- **Kelvin Felipe dos Santos** - R.A: 923200158
-- **Miguel Benites de Almeida** - R.A: 923209649
-- **Thiago Rocha Santana** - R.A: 923204332
+- **Normas de Qualidade (NBR ISO 9000-3 e ISO 9001):** Orientam a gestão de qualidade em produtos de software, estabelecendo definições de componentes e processos.
+- **Avaliação e Realimentação Contínuas:** Práticas essenciais para o aprendizado e melhoria contínua do desenvolvimento e da manutenção dos produtos de software.
+- **Controle Individual de Projetos:** Registro e acompanhamento detalhado das atividades de cada projeto para promover melhorias e garantir a qualidade.
 
-## Funcionalidades
+### 3. Gerenciamento de Experiências e Competências
 
-- Registro e login de usuários (advogados e clientes).
-- Envio e gerenciamento de chamados.
-- Marcação de status dos chamados por advogados.
-- Visualização de informações do usuário logado.
-- Interface responsiva e atraente.
+- **Construção de Competência em Software:** Registro, gestão e distribuição adequada de experiências (ou cases) de projetos para promover aprendizado organizacional.
+- **Base de Experiências Atualizável:** Acúmulo de conhecimentos e práticas a partir de diferentes experiências com processos, produtos, recursos, defeitos e modelos de qualidade.
 
-## Tecnologias Utilizadas
+### 4. Reutilização e Repositórios de Experiências
 
-- **Frontend**: HTML, CSS, JavaScript, Bootstrap
-- **Backend**: Node.js, Express
-- **Banco de Dados**: MySQL
-- **Autenticação**: bcrypt, express-session
+- **Reutilização de Experiências:** Definir quando, como e onde as experiências passadas serão reutilizadas no desenvolvimento e manutenção de novos produtos.
+- **Armazenamento e Disponibilização de Experiências:** Organização de repositórios de informações que integram projetos similares e características comuns, facilitando o acesso a casos relevantes.
 
-## Estrutura do Banco de Dados
-
-### Tabelas Criadas
-
-```sql
--- Criação da tabela "chamados"
-CREATE TABLE chamados (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    sobrenome VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    telefone VARCHAR(255) NOT NULL,
-    ramo VARCHAR(255) NOT NULL,
-    descricao TEXT NOT NULL,
-    status VARCHAR(255) DEFAULT 'Aberto',
-    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Criação da tabela "sessions"
-CREATE TABLE sessions (
-    session_id VARCHAR(128) PRIMARY KEY,
-    expires INT UNSIGNED NOT NULL,
-    data MEDIUMTEXT NOT NULL
-);
-
--- Criação da tabela "usuarios"
-CREATE TABLE usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    sobrenome VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    senha VARCHAR(255) NOT NULL
-);
-```
-
-## Instalação
-
-Para instalar as dependências do projeto e executar o servidor Node.js, siga os passos abaixo:
-
-1. Clone o repositório:
-
-   ```bash
-   gh repo clone Kelvinsantosyz/Projeto
-   cd Projeto
-   ```
-
-2. Instale as dependências do projeto:
-
-   ```bash
-   npm install
-   ```
-
-3. Inicie o servidor:
-
-   ```bash
-   node server.js
-   ```
-
-4. Acesse a aplicação em seu navegador em `http://localhost:3000`.
-
-## Dependências
-
-As seguintes dependências são necessárias para o funcionamento do projeto:
-
-```json
-{
-  "dependencies": {
-    "bcrypt": "^5.1.1",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.20.2",
-    "bootbox": "^6.0.0",
-    "bootstrap": "^5.3.3",
-    "cors": "^2.8.5",
-    "csurf": "^1.11.0",
-    "express": "^4.19.2",
-    "express-session": "^1.18.0",
-    "express-validator": "^7.2.0",
-    "mysql2": "^3.11.0"
-  }
-}
-```
-
-## Configuração do Servidor MySQL
-
-Antes de iniciar o projeto, você deve garantir que o seu servidor MySQL esteja configurado corretamente. As credenciais de conexão estão definidas no código do servidor. Modifique as opções abaixo conforme necessário:
-
-```javascript
-const dbOptions = {
-    host: 'localhost',
-    user: 'root',
-    password: '30561414', // Altere para sua senha do MySQL
-    database: 'cadastro_db' // O nome do banco de dados que você criou
-};
-```
-
-## Configuração da Sessão
-
-Para gerenciar sessões de usuário, a seguinte configuração é utilizada:
-
-```javascript
-app.use(session({
-    secret: '0488', // Segredo utilizado para assinar o cookie da sessão
-    resave: false, // Não re-salvar a sessão se não houver alterações
-    saveUninitialized: false, // Não salvar sessões não inicializadas
-    cookie: { secure: false } // Para produção, considere definir como true e usar HTTPS
-}));
-```
-
-- **secret**: Um valor que é utilizado para assinar a sessão. Este valor deve ser mantido em segredo.
-- **resave**: Se `false`, a sessão só será re-salva no armazenamento se houve alguma modificação. 
-- **saveUninitialized**: Se `false`, não armazena sessões não inicializadas no armazenamento.
-- **cookie.secure**: Se `true`, o cookie só será enviado em conexões HTTPS. Em ambiente de desenvolvimento, você pode definir como `false`, mas em produção, é recomendado usar HTTPS.
-
-## Contribuição
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir uma *issue* ou enviar um *pull request*.
-
-## Licença
-
-Este projeto é licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para detalhes.
-```
-
-### Alterações
-- Adicionadas seções para **Configuração do Servidor MySQL** e **Configuração da Sessão**, explicando como configurar o servidor MySQL e o middleware de sessão no Express.
-
-Se precisar de mais ajustes ou informações adicionais, é só avisar!
+Esses tópicos resumem os principais conceitos de gestão de qualidade e processos de desenvolvimento de software, além de promover o aprendizado organizacional por meio da reutilização e registro de experiências.
